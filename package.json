@@ -1,0 +1,23 @@
+{
+	"name": "wp-quran",
+	"version": "0.1.0",
+	"description": "Display an ayah of the Qu'ran easily in your WordPress website.",
+	"author": "Florian TIAR",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format:js": "wp-scripts format-js",
+		"format:js:src": "wp-scripts format-js ./src",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^7.0.1"
+	},
+	"dependencies": {
+		"@wordpress/element": "^2.11.0"
+	}
+}
