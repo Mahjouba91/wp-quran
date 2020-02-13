@@ -19,9 +19,17 @@ const attributes = {
 		type: 'string',
 		default: ""
 	},
+	currentAyahTextInArabic: {
+		type: 'string',
+		default: ""
+	},
 	currentSurahAyahs: {
 		type: 'array',
 		default: []
+	},
+	showVerseInArabic: {
+		type: 'boolean',
+		default: false
 	},
 };
 
