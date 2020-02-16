@@ -573,7 +573,7 @@ function (_Component) {
                   data.data.forEach(function (surate, index) {
                     surahOptions.push({
                       value: '' + surate.number + '',
-                      label: surate.number + ' - ' + surate.englishName
+                      label: surate.number + ' - ' + surate.englishName + ' - ' + surate.name
                     });
                   });
                   setAttributes({
@@ -628,7 +628,8 @@ function (_Component) {
                 if (data.code === 200 && data.status === 'OK') {
                   data.data.ayahs.forEach(function (ayah, index) {
                     currentSurahAyahs.push({
-                      value: ayah.number,
+                      value: index,
+                      verseId: ayah.number,
                       label: ayah.text
                     });
                   });
@@ -667,19 +668,23 @@ function (_Component) {
                 setAttributes({
                   currentAyahNum: ayah
                 });
+                console.log(ayah);
+                console.log(attributes.currentAyahNum);
+                console.log(attributes.currentSurahAyahs);
+                console.log(attributes.currentAyahText);
                 setAttributes({
-                  currentAyahText: attributes.currentSurahAyahs[--ayah].label
+                  currentAyahText: attributes.currentSurahAyahs[ayah].label
                 }); // Save verse in arabic just in case showVerseInArabic is set to true
 
-                _context3.next = 5;
+                _context3.next = 9;
                 return fetch("https://api.alquran.cloud/v1/ayah/" + attributes.currentSurah + ':' + ++ayah + '/ar');
 
-              case 5:
+              case 9:
                 response = _context3.sent;
-                _context3.next = 8;
+                _context3.next = 12;
                 return response.json();
 
-              case 8:
+              case 12:
                 json = _context3.sent;
 
                 if (json.code === 200 && json.status === 'OK') {
@@ -688,7 +693,7 @@ function (_Component) {
                   });
                 }
 
-              case 10:
+              case 14:
               case "end":
                 return _context3.stop();
             }

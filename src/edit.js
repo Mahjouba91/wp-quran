@@ -31,7 +31,7 @@ export default class QuranVerseEdit extends Component {
 			data.data.forEach(function (surate, index) {
 				surahOptions.push({
 					value: '' + surate.number + '',
-					label: surate.number + ' - ' + surate.englishName,
+					label: surate.number + ' - ' + surate.englishName + ' - ' + surate.name,
 				});
 			});
 			setAttributes({surahOptions});
@@ -52,7 +52,8 @@ export default class QuranVerseEdit extends Component {
 		if (data.code === 200 && data.status === 'OK') {
 			data.data.ayahs.forEach(function (ayah, index) {
 				currentSurahAyahs.push({
-					value: ayah.number,
+					value: index,
+					verseId: ayah.number,
 					label: ayah.text,
 				});
 			});
@@ -67,7 +68,13 @@ export default class QuranVerseEdit extends Component {
 		} = this.props;
 
 		setAttributes({currentAyahNum: ayah});
-		setAttributes({currentAyahText: attributes.currentSurahAyahs[--ayah].label});
+
+		console.log( ayah );
+		console.log( attributes.currentAyahNum );
+		console.log( attributes.currentSurahAyahs );
+		console.log( attributes.currentAyahText );
+
+		setAttributes({currentAyahText: attributes.currentSurahAyahs[ayah].label});
 
 		// Save verse in arabic just in case showVerseInArabic is set to true
 		let response = await fetch(`https://api.alquran.cloud/v1/ayah/` + attributes.currentSurah + ':' + ++ayah + '/ar');
