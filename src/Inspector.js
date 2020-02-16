@@ -10,6 +10,7 @@ export default class Inspector extends Component {
 		const {
 			setAttributes,
 			attributes: { showVerseInArabic, currentSurahAyahs },
+			editionSelect,
 			surahSelect,
 			ayahSelect
 		} = this.props;
@@ -17,6 +18,8 @@ export default class Inspector extends Component {
 		return (
 			<InspectorControls>
 				<PanelBody title="Block options">
+
+					{editionSelect}
 
 					{surahSelect}
 

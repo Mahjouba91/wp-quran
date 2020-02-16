@@ -15,6 +15,7 @@ export default class QuranVerseEdit extends Component {
 		this.onAyahChange = this.onAyahChange.bind(this);
 
 		this.getSurahOptions();
+		this.getQuranEditions();
 	}
 
 	async getSurahOptions() {
@@ -38,6 +39,26 @@ export default class QuranVerseEdit extends Component {
 		}
 	}
 
+	async getQuranEditions() {
+
+		const {
+			setAttributes
+		} = this.props;
+
+		let editionOptions = [];
+
+		let response = await fetch(`https://api.alquran.cloud/v1/edition`);
+		let data = await response.json();
+		if (data.code === 200 && data.status === 'OK') {
+			data.data.forEach(function (edition, index) {
+				editionOptions.push(edition);
+				editionOptions[index].value = edition.identifier;
+				editionOptions[index].label = edition.englishName;
+			});
+			setAttributes({quranEditions: editionOptions});
+		}
+	}
+
 	async onSurahChange(surah, _props) {
 		const {
 			setAttributes
@@ -47,7 +68,7 @@ export default class QuranVerseEdit extends Component {
 		setAttributes({currentSurahText: _props.attributes.surahOptions[surah - 1].label});
 
 		let currentSurahAyahs = [];
-		let response = await fetch(`https://api.alquran.cloud/v1/surah/` + surah + '/fr.hamidullah');
+		let response = await fetch(`https://api.alquran.cloud/v1/surah/` + surah + '/' + _props.attributes.currentEdition );
 		let data = await response.json();
 		if (data.code === 200 && data.status === 'OK') {
 			data.data.ayahs.forEach(function (ayah, index) {
@@ -61,6 +82,14 @@ export default class QuranVerseEdit extends Component {
 		}
 	}
 
+	async onEditionChange(edition, _props) {
+		const {
+			setAttributes
+		} = _props;
+
+		setAttributes({currentEdition: edition});
+	}
+
 	async onAyahChange(ayah) {
 		const {
 			setAttributes,
@@ -68,12 +97,6 @@ export default class QuranVerseEdit extends Component {
 		} = this.props;
 
 		setAttributes({currentAyahNum: ayah});
-
-		console.log( ayah );
-		console.log( attributes.currentAyahNum );
-		console.log( attributes.currentSurahAyahs );
-		console.log( attributes.currentAyahText );
-
 		setAttributes({currentAyahText: attributes.currentSurahAyahs[ayah].label});
 
 		// Save verse in arabic just in case showVerseInArabic is set to true
@@ -90,7 +113,9 @@ export default class QuranVerseEdit extends Component {
 		const {
 			attributes: {
 				surahOptions,
+				quranEditions,
 				currentSurah,
+				currentEdition,
 				currentSurahText,
 				currentSurahAyahs,
 				currentAyahNum,
@@ -101,6 +126,17 @@ export default class QuranVerseEdit extends Component {
 			isSelected,
 			className
 		} = this.props;
+
+		const editionSelect = (
+			<SelectControl
+				label={__("Edition", 'wpmuslim')}
+				value={currentEdition}
+				options={quranEditions}
+				onChange={(newValue) => {
+					this.onEditionChange(newValue, this.props);
+				}}
+			/>
+		);
 
 		const surahSelect = (
 			<SelectControl
@@ -126,7 +162,7 @@ export default class QuranVerseEdit extends Component {
 
 			<Fragment>
 
-				<Inspector { ...{ ...this.props, surahSelect, ayahSelect } } />
+				<Inspector { ...{ ...this.props, surahSelect, ayahSelect, editionSelect } } />
 
 				<div className={className}>
 
@@ -137,6 +173,8 @@ export default class QuranVerseEdit extends Component {
 							label={__("Qu'ran verses.", 'wpmuslim')}
 							instructions={__("Please select one of the 114 surah.", 'wpmuslim')}
 						>
+							{editionSelect}
+
 							{surahSelect}
 
 							{currentSurahAyahs.length > 0 &&

@@ -1,7 +1,25 @@
 const attributes = {
+	quranEditions: {
+		type: 'array',
+		default: []
+	},
 	surahOptions: {
 		type: 'array',
 		default: []
+	},
+	currentEdition: {
+		type: 'object',
+		default: {
+			"identifier": "fr.hamidullah",
+			"language": "fr",
+			"name": "Hamidullah",
+			"englishName": "Muhammad Hamidullah",
+			"format": "text",
+			"type": "translation",
+			"direction": "ltr",
+			"label": "Muhammad Hamidullah",
+			"value": "fr.hamidullah"
+		}
 	},
 	currentSurah: {
 		type: 'string',

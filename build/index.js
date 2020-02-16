@@ -397,11 +397,12 @@ function (_Component) {
           _this$props$attribute = _this$props.attributes,
           showVerseInArabic = _this$props$attribute.showVerseInArabic,
           currentSurahAyahs = _this$props$attribute.currentSurahAyahs,
+          editionSelect = _this$props.editionSelect,
           surahSelect = _this$props.surahSelect,
           ayahSelect = _this$props.ayahSelect;
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
         title: "Block options"
-      }, surahSelect, currentSurahAyahs.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, ayahSelect), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
+      }, editionSelect, surahSelect, currentSurahAyahs.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, ayahSelect), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
         label: "Display the verse in arabic",
         help: showVerseInArabic ? 'Verse displayed in arabic.' : 'No verse displayed in arabic.',
         checked: showVerseInArabic,
@@ -431,9 +432,27 @@ function (_Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var attributes = {
+  quranEditions: {
+    type: 'array',
+    default: []
+  },
   surahOptions: {
     type: 'array',
     default: []
+  },
+  currentEdition: {
+    type: 'object',
+    default: {
+      "identifier": "fr.hamidullah",
+      "language": "fr",
+      "name": "Hamidullah",
+      "englishName": "Muhammad Hamidullah",
+      "format": "text",
+      "type": "translation",
+      "direction": "ltr",
+      "label": "Muhammad Hamidullah",
+      "value": "fr.hamidullah"
+    }
   },
   currentSurah: {
     type: 'string',
@@ -542,6 +561,8 @@ function (_Component) {
 
     _this.getSurahOptions();
 
+    _this.getQuranEditions();
+
     return _this;
   }
 
@@ -596,15 +617,64 @@ function (_Component) {
       return getSurahOptions;
     }()
   }, {
+    key: "getQuranEditions",
+    value: function () {
+      var _getQuranEditions = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
+        var setAttributes, editionOptions, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                setAttributes = this.props.setAttributes;
+                editionOptions = [];
+                _context2.next = 4;
+                return fetch("https://api.alquran.cloud/v1/edition");
+
+              case 4:
+                response = _context2.sent;
+                _context2.next = 7;
+                return response.json();
+
+              case 7:
+                data = _context2.sent;
+
+                if (data.code === 200 && data.status === 'OK') {
+                  data.data.forEach(function (edition, index) {
+                    editionOptions.push(edition);
+                    editionOptions[index].value = edition.identifier;
+                    editionOptions[index].label = edition.englishName;
+                  });
+                  setAttributes({
+                    quranEditions: editionOptions
+                  });
+                }
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getQuranEditions() {
+        return _getQuranEditions.apply(this, arguments);
+      }
+
+      return getQuranEditions;
+    }()
+  }, {
     key: "onSurahChange",
     value: function () {
       var _onSurahChange = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(surah, _props) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3(surah, _props) {
         var setAttributes, currentSurahAyahs, response, data;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 setAttributes = _props.setAttributes;
                 setAttributes({
@@ -614,16 +684,16 @@ function (_Component) {
                   currentSurahText: _props.attributes.surahOptions[surah - 1].label
                 });
                 currentSurahAyahs = [];
-                _context2.next = 6;
-                return fetch("https://api.alquran.cloud/v1/surah/" + surah + '/fr.hamidullah');
+                _context3.next = 6;
+                return fetch("https://api.alquran.cloud/v1/surah/" + surah + '/' + _props.attributes.currentEdition);
 
               case 6:
-                response = _context2.sent;
-                _context2.next = 9;
+                response = _context3.sent;
+                _context3.next = 9;
                 return response.json();
 
               case 9:
-                data = _context2.sent;
+                data = _context3.sent;
 
                 if (data.code === 200 && data.status === 'OK') {
                   data.data.ayahs.forEach(function (ayah, index) {
@@ -640,10 +710,10 @@ function (_Component) {
 
               case 11:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }));
 
       function onSurahChange(_x, _x2) {
@@ -653,39 +723,65 @@ function (_Component) {
       return onSurahChange;
     }()
   }, {
+    key: "onEditionChange",
+    value: function () {
+      var _onEditionChange = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee4(edition, _props) {
+        var setAttributes;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                setAttributes = _props.setAttributes;
+                setAttributes({
+                  currentEdition: edition
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function onEditionChange(_x3, _x4) {
+        return _onEditionChange.apply(this, arguments);
+      }
+
+      return onEditionChange;
+    }()
+  }, {
     key: "onAyahChange",
     value: function () {
       var _onAyahChange = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3(ayah) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee5(ayah) {
         var _this$props, setAttributes, attributes, response, json;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 _this$props = this.props, setAttributes = _this$props.setAttributes, attributes = _this$props.attributes;
                 setAttributes({
                   currentAyahNum: ayah
                 });
-                console.log(ayah);
-                console.log(attributes.currentAyahNum);
-                console.log(attributes.currentSurahAyahs);
-                console.log(attributes.currentAyahText);
                 setAttributes({
                   currentAyahText: attributes.currentSurahAyahs[ayah].label
                 }); // Save verse in arabic just in case showVerseInArabic is set to true
 
-                _context3.next = 9;
+                _context5.next = 5;
                 return fetch("https://api.alquran.cloud/v1/ayah/" + attributes.currentSurah + ':' + ++ayah + '/ar');
 
-              case 9:
-                response = _context3.sent;
-                _context3.next = 12;
+              case 5:
+                response = _context5.sent;
+                _context5.next = 8;
                 return response.json();
 
-              case 12:
-                json = _context3.sent;
+              case 8:
+                json = _context5.sent;
 
                 if (json.code === 200 && json.status === 'OK') {
                   setAttributes({
@@ -693,15 +789,15 @@ function (_Component) {
                   });
                 }
 
-              case 14:
+              case 10:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
-      function onAyahChange(_x3) {
+      function onAyahChange(_x5) {
         return _onAyahChange.apply(this, arguments);
       }
 
@@ -715,7 +811,9 @@ function (_Component) {
       var _this$props2 = this.props,
           _this$props2$attribut = _this$props2.attributes,
           surahOptions = _this$props2$attribut.surahOptions,
+          quranEditions = _this$props2$attribut.quranEditions,
           currentSurah = _this$props2$attribut.currentSurah,
+          currentEdition = _this$props2$attribut.currentEdition,
           currentSurahText = _this$props2$attribut.currentSurahText,
           currentSurahAyahs = _this$props2$attribut.currentSurahAyahs,
           currentAyahNum = _this$props2$attribut.currentAyahNum,
@@ -724,6 +822,14 @@ function (_Component) {
           currentAyahTextInArabic = _this$props2$attribut.currentAyahTextInArabic,
           isSelected = _this$props2.isSelected,
           className = _this$props2.className;
+      var editionSelect = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_10__["SelectControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])("Edition", 'wpmuslim'),
+        value: currentEdition,
+        options: quranEditions,
+        onChange: function onChange(newValue) {
+          _this2.onEditionChange(newValue, _this2.props);
+        }
+      });
       var surahSelect = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_10__["SelectControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])("Surah", 'wpmuslim'),
         value: currentSurah,
@@ -740,14 +846,15 @@ function (_Component) {
       });
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_Inspector__WEBPACK_IMPORTED_MODULE_12__["default"], _objectSpread({}, this.props, {
         surahSelect: surahSelect,
-        ayahSelect: ayahSelect
+        ayahSelect: ayahSelect,
+        editionSelect: editionSelect
       })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("div", {
         className: className
       }, currentAyahText.length < 1 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_10__["Placeholder"], {
         icon: "book",
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])("Qu'ran verses.", 'wpmuslim'),
         instructions: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])("Please select one of the 114 surah.", 'wpmuslim')
-      }, surahSelect, currentSurahAyahs.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["Fragment"], null, ayahSelect)), currentAyahText.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("p", {
+      }, editionSelect, surahSelect, currentSurahAyahs.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["Fragment"], null, ayahSelect)), currentAyahText.length > 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("p", {
         className: "translated-ayah"
       }, currentAyahText), showVerseInArabic && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_9__["createElement"])("p", {
         className: "arabic-ayah"
