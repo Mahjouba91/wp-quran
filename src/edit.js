@@ -53,7 +53,7 @@ export default class QuranVerseEdit extends Component {
 			data.data.forEach(function (edition, index) {
 				editionOptions.push(edition);
 				editionOptions[index].value = edition.identifier;
-				editionOptions[index].label = edition.englishName;
+				editionOptions[index].label = edition.format + ' - ' + edition.language + ' - ' + edition.englishName;
 			});
 			setAttributes({quranEditions: editionOptions});
 		}
