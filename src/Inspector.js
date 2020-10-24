@@ -4,6 +4,7 @@
 import { Component, Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export default class Inspector extends Component {
 	render() {
@@ -12,30 +13,34 @@ export default class Inspector extends Component {
 			attributes: { showVerseInArabic, currentSurahAyahs },
 			editionSelect,
 			surahSelect,
-			ayahSelect
+			ayahSelect,
 		} = this.props;
 
 		return (
 			<InspectorControls>
 				<PanelBody title="Block options">
+					{ editionSelect }
 
-					{editionSelect}
+					{ surahSelect }
 
-					{surahSelect}
-
-					{currentSurahAyahs.length > 0 &&
-						<Fragment>
-							{ayahSelect}
-						</Fragment>
-					}
+					{ currentSurahAyahs.length > 0 && (
+						<Fragment>{ ayahSelect }</Fragment>
+					) }
 
 					<ToggleControl
-						label="Display the verse in arabic"
-						help={ showVerseInArabic ? 'Verse displayed in arabic.' : 'No verse displayed in arabic.' }
+						label={ __( 'Display the verse in arabic', 'wpquran' ) }
+						help={
+							showVerseInArabic
+								? __( 'Verse displayed in arabic.', 'wpquran' )
+								: __(
+										'Verse not displayed in arabic.',
+										'wpquran'
+								  )
+						}
 						checked={ showVerseInArabic }
-						onChange={(value) => {
-							setAttributes({showVerseInArabic: value});
-						}}
+						onChange={ ( value ) => {
+							setAttributes( { showVerseInArabic: value } );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>

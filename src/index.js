@@ -12,15 +12,9 @@ import save from './save';
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 registerBlockType( 'wpmuslim/wp-quran', {
-	title: __(
-		'Wp Quran',
-		'wpmuslim'
-	),
+	title: __( 'Wp Quran', 'wpmuslim' ),
 
-	description: __(
-		'Display Quran verses with ease.',
-		'wpmuslim'
-	),
+	description: __( 'Display Quran verses with ease.', 'wpmuslim' ),
 
 	/**
 	 * Blocks are grouped into categories to help users browse and discover them.
@@ -30,7 +24,7 @@ registerBlockType( 'wpmuslim/wp-quran', {
 
 	icon: {
 		background: 'rgba(157,254,128,0.52)',
-		src: <Icon icon="book" size={'24'}/>,
+		src: <Icon icon="book" size={ '24' } />,
 	},
 
 	keywords: [

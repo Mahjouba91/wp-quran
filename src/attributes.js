@@ -1,43 +1,43 @@
 const attributes = {
 	quranEditions: {
 		type: 'array',
-		default: []
+		default: [],
 	},
 	surahOptions: {
 		type: 'array',
-		default: []
+		default: [],
 	},
 	currentEdition: {
 		type: 'string',
-		default: 'fr.hamidullah'
+		default: 'fr.hamidullah',
 	},
 	currentSurah: {
 		type: 'string',
-		default: "1"
+		default: '1',
 	},
 	currentSurahText: {
 		type: 'string',
-		default: ""
+		default: '',
 	},
 	currentAyahNum: {
 		type: 'string',
-		default: "0"
+		default: '0',
 	},
 	currentAyahText: {
 		type: 'string',
-		default: ""
+		default: '',
 	},
 	currentAyahTextInArabic: {
 		type: 'string',
-		default: ""
+		default: '',
 	},
 	currentSurahAyahs: {
 		type: 'array',
-		default: []
+		default: [],
 	},
 	showVerseInArabic: {
 		type: 'boolean',
-		default: false
+		default: false,
 	},
 };
 

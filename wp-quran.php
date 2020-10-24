@@ -5,9 +5,9 @@
  * Version:         0.1.0
  * Author:          WP Muslim team
  * License:         GPL-2.0-or-later
- * Text Domain:     wpmuslim
+ * Text Domain:     wpquran
  *
- * @package         wpmuslim
+ * @package         wpquran
  */
 
 /**
