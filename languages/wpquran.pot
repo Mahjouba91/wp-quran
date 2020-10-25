@@ -1,0 +1,94 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Qu'ran\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-25 15:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Florian TIAR <contact@tiar-florian.fr>\n"
+"Language-Team: Florian TIAR <contact@tiar-florian.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-KeywordsList: _e;__;_x;esc_html__;esc_html_e;_n;_ex;esc_html_x;"
+"esc_attr_x;translate;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: build\n"
+
+#: src/Inspector.js:31
+msgid "Display the verse in arabic"
+msgstr ""
+
+#: src/Inspector.js:34
+msgid "Verse displayed in arabic."
+msgstr ""
+
+#: src/Inspector.js:36
+msgid "Verse not displayed in arabic."
+msgstr ""
+
+#: src/edit.js:141
+msgid "Edition"
+msgstr ""
+
+#: src/edit.js:152
+msgid "Surah"
+msgstr ""
+
+#: src/edit.js:163
+msgid "Verse"
+msgstr ""
+
+#: src/edit.js:172 src/save.js:13
+#, javascript-format
+msgid "Verse %s, Surah %s"
+msgstr ""
+
+#: src/edit.js:192
+msgid "Qu'ran verses."
+msgstr ""
+
+#: src/edit.js:194
+msgid "Please select one of the 114 surah."
+msgstr ""
+
+#: src/index.js:15
+msgid "Wp Quran"
+msgstr ""
+
+#: src/index.js:17
+msgid "Display Quran verses with ease."
+msgstr ""
+
+#: src/index.js:31
+msgid "quran"
+msgstr ""
+
+#: src/index.js:32
+msgid "coran"
+msgstr ""
+
+#: src/index.js:33
+msgid "verse"
+msgstr ""
+
+#: src/index.js:34
+msgid "ayah"
+msgstr ""
+
+#: src/index.js:35
+msgid "islam"
+msgstr ""
+
+#: src/index.js:36
+msgid "muslim"
+msgstr ""
+
+#: src/index.js:37
+msgid "holy"
+msgstr ""

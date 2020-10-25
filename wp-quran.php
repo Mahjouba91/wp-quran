@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:     Wp Qu'ran
- * Description:     Display an ayah of the Qu'ran easily in your WordPress website.
+ * Description:     Display a verse of the Qu'ran easily in your WordPress website.
  * Version:         0.1.0
- * Author:          WP Muslim team
+ * Author:          Florian TIAR
  * License:         GPL-2.0-or-later
  * Text Domain:     wpquran
  *
