@@ -33,6 +33,7 @@ function wp_quran_block_init() {
 		$script_asset['dependencies'],
 		$script_asset['version']
 	);
+	wp_set_script_translations( 'wp-quran-block-editor', 'wpquran' );
 
 	$editor_css = 'editor.css';
 	wp_register_style(
