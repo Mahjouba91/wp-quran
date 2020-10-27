@@ -17,11 +17,15 @@ WP Qu'ran plugin allow you to embed any verse of the Qu'ran. No more hassle with
 
 You have the same output in the frontend, you can display the verse in a translated language like French and then in arabic, then you have the verse number and surah name and number for reference.
 
-== Frequently Asked Questions ==
+The surah, editions, and verses data are all available under the public API of https://alquran.cloud/api
 
-= Where did you get all the qu'ran data? =
+The plugin is just using this data to allow you to embed any of this data inside your WordPress website.
+There is no API call done in the frontend of your website, the plugin call the different API endpoints only in the backend when you're writing your article inside the block editor.
+The output of the block you see in the editor will be exactly the same in the frontend (and this content is saved in your post_content column in wp_posts table like a normal WordPress website) except if you have some custom CSS rules.
 
-The surah and verses data are available under the public API of https://alquran.cloud/api
+You can see the terms of use of the API here: https://islamic.network/terms-and-conditions.html
+
+You are highly encouraged to give any feedback to improve the plugin.
 
 == Installation ==
 
