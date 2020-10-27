@@ -23,7 +23,7 @@ The plugin is just using this data to allow you to embed any of this data inside
 There is no API call done in the frontend of your website, the plugin call the different API endpoints only in the backend when you're writing your article inside the block editor.
 The output of the block you see in the editor will be exactly the same in the frontend (and this content is saved in your post_content column in wp_posts table like a normal WordPress website) except if you have some custom CSS rules.
 
-You can see the terms of use of the API here: https://islamic.network/terms-and-conditions.html
+You can see [the terms of use of the API](https://islamic.network/terms-and-conditions.html). Thanks to the Islamic Network to allow us to use this amazing API to give you the ability to display any verse of the Qu'ran on your website.
 
 You are highly encouraged to give any feedback to improve the plugin.
 
