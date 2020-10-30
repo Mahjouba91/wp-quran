@@ -27,6 +27,8 @@ You can see [the terms of use of the API](https://islamic.network/terms-and-cond
 
 You are highly encouraged to give any feedback to improve the plugin.
 
+You can contribute to the plugin in [the github repository](https://github.com/Mahjouba91/wp-quran).
+
 == Installation ==
 
 = Automatic Install =
