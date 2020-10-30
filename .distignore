@@ -7,3 +7,6 @@
 .gitignore
 .eslintignore
 .editorconfig
+
+composer.json
+composer.lock

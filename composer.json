@@ -1,0 +1,21 @@
+{
+  "name":"wpmuslim/wp-quran",
+  "description":"Add a holy verse of the Qu'ran in your WordPress website.",
+  "keywords":[
+	"quran",
+	"ayah",
+	"verse",
+	"islam"
+  ],
+  "homepage":"https://github.com/Mahjouba91/wp-quran",
+  "authors":[
+	{
+	  "name":"Florian TIAR",
+	  "email":"contact@tiar-florian.fr",
+	  "homepage":"https://wpstrategie.fr"
+	}
+  ],
+  "type":"wordpress-plugin",
+  "minimum-stability":"stable",
+  "license":"GPL-3.0+"
+}
