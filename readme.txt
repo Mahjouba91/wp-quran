@@ -44,6 +44,12 @@ You are highly encouraged to give any feedback to improve the plugin.
 3. Log into your WordPress dashboard and go to Plugins
 4. Click "Activate" under the Wp Qu'ran plugin
 
+== Screenshots ==
+
+1. How to configure a verse of the Qu'ran in the block editor
+2. The output of the block in the block editor
+3. The output of the block in the frontend
+
 == Changelog ==
 
 = 0.1.0 =
