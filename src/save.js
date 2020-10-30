@@ -20,13 +20,17 @@ export default class WpQuranSave extends Component {
 				{ attributes.currentAyahText.length > 0 &&
 					attributes.currentSurahText && (
 						<Fragment>
-							<p>{ attributes.currentAyahText }</p>
+							<p className="translated-ayah">
+								{ attributes.currentAyahText }
+							</p>
 
 							{ attributes.showVerseInArabic && (
-								<p>{ attributes.currentAyahTextInArabic }</p>
+								<p className="arabic-ayah">
+									{ attributes.currentAyahTextInArabic }
+								</p>
 							) }
 
-							<p>{ verseInfo }</p>
+							<p className="translated-surah">{ verseInfo }</p>
 						</Fragment>
 					) }
 			</div>
