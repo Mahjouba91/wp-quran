@@ -11,7 +11,7 @@ export default class WpQuranSave extends Component {
 		// translators: %s: number of verse and surah e.g: "Verse 13, Surah 18 – Al-Kahf – سورة الكهف".
 		const verseInfo = sprintf(
 			__( 'Verse %s, Surah %s', 'wp-quran' ),
-			attributes.currentAyahNum,
+			attributes.currentAyahNumberInSurah,
 			attributes.currentSurahText
 		);
 
@@ -25,9 +25,15 @@ export default class WpQuranSave extends Component {
 							</p>
 
 							{ attributes.showVerseInArabic && (
-								<p className="arabic-ayah">
-									{ attributes.currentAyahTextInArabic }
-								</p>
+								<Fragment>
+									<p className="arabic-ayah">
+										{ attributes.currentAyahTextInArabic }
+									</p>
+									<audio
+										controls
+										src={ `http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${ attributes.currentAyahNumberInQuran }/high` }>
+									</audio>
+								</Fragment>
 							) }
 
 							<p className="translated-surah">{ verseInfo }</p>

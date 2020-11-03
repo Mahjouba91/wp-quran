@@ -19,9 +19,13 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	currentAyahNum: {
+	currentAyahNumberInSurah: {
 		type: 'string',
 		default: '0',
+	},
+	currentAyahNumberInQuran: {
+		type: 'integer',
+		default: 0,
 	},
 	currentAyahText: {
 		type: 'string',

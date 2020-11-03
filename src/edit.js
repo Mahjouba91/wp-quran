@@ -100,9 +100,9 @@ export default class QuranVerseEdit extends Component {
 	async onAyahChange( ayah ) {
 		const { setAttributes, attributes } = this.props;
 
-		setAttributes( { currentAyahNum: ayah } );
 		setAttributes( {
 			currentAyahText: attributes.currentSurahAyahs[ ayah ].label,
+			currentAyahNumberInSurah: ayah
 		} );
 
 		// Save verse in arabic just in case showVerseInArabic is set to true
@@ -115,7 +115,10 @@ export default class QuranVerseEdit extends Component {
 		);
 		const json = await response.json();
 		if ( json.code === 200 && json.status === 'OK' ) {
-			setAttributes( { currentAyahTextInArabic: json.data.text } );
+			setAttributes( {
+				currentAyahTextInArabic: json.data.text,
+				currentAyahNumberInQuran: json.data.number
+			} );
 		}
 	}
 
@@ -128,7 +131,8 @@ export default class QuranVerseEdit extends Component {
 				currentEdition,
 				currentSurahText,
 				currentSurahAyahs,
-				currentAyahNum,
+				currentAyahNumberInSurah,
+				currentAyahNumberInQuran,
 				currentAyahText,
 				showVerseInArabic,
 				currentAyahTextInArabic,
@@ -161,7 +165,7 @@ export default class QuranVerseEdit extends Component {
 		const ayahSelect = (
 			<SelectControl
 				label={ __( 'Verse', 'wpquran' ) }
-				value={ currentAyahNum }
+				value={ currentAyahNumberInSurah }
 				options={ currentSurahAyahs }
 				onChange={ this.onAyahChange }
 			/>
@@ -170,7 +174,7 @@ export default class QuranVerseEdit extends Component {
 		// translators: %s: number of verse and surah e.g: "Verse 13, Surah 18 – Al-Kahf – سورة الكهف".
 		const verseInfo = sprintf(
 			__( 'Verse %s, Surah %s', 'wp-quran' ),
-			currentAyahNum,
+			currentAyahNumberInSurah,
 			currentSurahText
 		);
 
@@ -212,9 +216,15 @@ export default class QuranVerseEdit extends Component {
 							</p>
 
 							{ showVerseInArabic && (
-								<p className="arabic-ayah">
-									{ currentAyahTextInArabic }
-								</p>
+								<Fragment>
+									<p className="arabic-ayah">
+										{ currentAyahTextInArabic }
+									</p>
+									<audio
+										controls
+										src={ `http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${ currentAyahNumberInQuran }/high` }>
+									</audio>
+								</Fragment>
 							) }
 
 							<p className="translated-surah">{ verseInfo }</p>
