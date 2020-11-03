@@ -3,7 +3,7 @@ Contributors: mista-flo
 Requires at least: 5.0
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 0.1.1
+Stable tag: 0.2.0
 Donate link: https://www.paypal.me/FlorianTIAR/5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,11 +13,11 @@ Display verses of the Qu'ran easily in your WordPress website
 
 == Description ==
 
-WP Qu'ran plugin allow you to embed any verse of the Qu'ran. No more hassle with bad copy pasting of verses, no mistake with the number of the verse or the name of the surah, no more issue with the translation, you can display the verse in many languages and have the arabic version next to it.
+WP Qu'ran plugin allow you to embed any verse of the Qu'ran. No more hassle with bad copy pasting of verses, no mistake with the number of the verse or the name of the surah, no more issue with the translation, you can display the verse in many languages and have the arabic version next to it with the audio of the recitation as well.
 
 You have the same output in the frontend, you can display the verse in a translated language like French and then in arabic, then you have the verse number and surah name and number for reference.
 
-The surah, editions, and verses data are all available under the public API of https://alquran.cloud/api
+The surah, editions, and verses data are all available under the public API of [https://alquran.cloud/api](https://alquran.cloud/api).
 
 The plugin is just using this data to allow you to embed any of this data inside your WordPress website.
 There is no API call done in the frontend of your website, the plugin call the different API endpoints only in the backend when you're writing your article inside the block editor.
@@ -53,6 +53,12 @@ You can contribute to the plugin in [the github repository](https://github.com/M
 3. The output of the block in the frontend
 
 == Changelog ==
+
+= 0.2.0 =
+* 3rd November 2020
+* Feature: You can now play the audio recitation of the arabic verse.
+* Fix: The arabic verse is now displayed as text-align right.
+* Tweak: Improve style of the arabic verse.
 
 = 0.1.0 =
 * 25th October 2020

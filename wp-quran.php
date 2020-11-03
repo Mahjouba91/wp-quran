@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Wp Qu'ran
  * Description:     Display a verse of the Qu'ran easily in your WordPress website.
- * Version:         0.1.1
+ * Version:         0.2.0
  * Author:          Florian TIAR
  * License:         GPL-2.0-or-later
  * Text Domain:     wpquran
