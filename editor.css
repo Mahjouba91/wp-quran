@@ -20,3 +20,6 @@
 .wp-block-wpmuslim-wp-quran label.components-base-control__label {
 	display: block;
 }
+.wp-block-wpmuslim-wp-quran .arabic-ayah {
+	font-size: 2rem;
+}
