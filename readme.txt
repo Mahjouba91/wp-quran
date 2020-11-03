@@ -54,13 +54,11 @@ You can contribute to the plugin in [the github repository](https://github.com/M
 
 == Changelog ==
 
-= 0.2.0 =
-* 3rd November 2020
+= 0.2.0 - 3rd November 2020 =
 * Feature: You can now play the audio recitation of the arabic verse.
 * Fix: The arabic verse is now displayed as text-align right.
 * Tweak: Improve style of the arabic verse.
 
-= 0.1.0 =
-* 25th October 2020
+= 0.1.0 - 25th October 2020 =
 * Initial version of the plugin. Please test it and provide valuable feedback to improve it.
 
